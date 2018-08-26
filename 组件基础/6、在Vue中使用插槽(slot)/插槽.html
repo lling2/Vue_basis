@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='../../js/vue.js'></script>
+</head>
+<body>
+    <!-- 不利用插槽父组件向子组件传含标签的元素 -->
+    <!-- 利用v-html -->
+    <div id="app">
+        <child content='<h2>qq</h2>'></child>
+    </div>
+    <script>
+        Vue.component("child",{
+            template:`<div><div v-html='content'></div></div>`,
+            props:['content']
+        })
+        var vm = new Vue({
+            el:'#app'
+        })
+    </script>
+</body>
+</html>

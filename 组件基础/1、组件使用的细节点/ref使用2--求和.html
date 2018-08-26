@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='../../js/vue.js'></script>
+</head>
+<body>
+    <!-- 实现子组件的求和 -->
+    <div id="app">
+        <!-- 监听change事件 -->
+        <counter @change='handleChange' ref='one'></counter>
+        <counter @change='handleChange' ref='two'></counter>
+        <div>{{total}}</div>
+    </div>
+    <script>
+        Vue.component('counter',{
+            template:"<div @click='handleClick'>{{num}}</div>",
+            data:function(){
+                return{
+                    num:0
+                }
+            },
+            methods:{
+                handleClick: function(){
+                    this.num++;
+                    // 因为需要求和，所以要将子组件的值传给父组件。利用emit事件
+                    this.$emit('change');
+                }
+            }
+        })
+        var vm = new Vue({
+            el:"#app",
+            data: {
+                total:0
+            },
+            methods: {
+                handleChange: function(){
+                    // this.$refs.one表示对dom元素的引用
+                    // this.$refs.one.num表示对dom元素里面值的引用
+                    this.total=this.$refs.one.num+this.$refs.two.num;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

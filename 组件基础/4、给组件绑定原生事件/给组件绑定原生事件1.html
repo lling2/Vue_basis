@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='../../js/vue.js'></script>
+</head>
+<body>
+    <div id="root">
+        <child @click='handleClick'></child>
+    </div>
+    <script>
+        // 比较原生事件与自定义事件
+        // 原生事件：直接添加在元素上面
+
+        // 这次点击 利用子组件传递给父组件 然后父组件有点击事件
+        Vue.component("child",{
+            template:"<div @click='handleClick'>child</div>",
+            methods:{
+                handleClick: function(){
+                    this.$emit("click");
+                }
+            }
+        })
+        var vm = new Vue({
+            el:'#root',
+            methods:{
+                handleClick: function(){
+                    alert("click")
+                }
+            }
+        })
+    </script>
+</body>
+</html>

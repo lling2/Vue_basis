@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='../../js/vue.js'></script>
+</head>
+<body>
+    <!-- 点击hello将其alert出来 -->
+    <!-- 利用ref获取DOM元素的引用 $refs为一个对象 -->
+    <div id="root">
+        <div @click='handleClick' ref='hello'>hello</div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#root',
+            methods:{
+                handleClick:function(){
+                    alert(this.$refs.hello.innerHTML)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='../../js/vue.js'></script>
+</head>
+<body>
+    <div id="root">
+        <child @click.native='handleClick'></child>
+    </div>
+    <script>
+        // 比较原生事件与自定义事件
+        // 原生事件：直接添加在元素上面
+
+        // 直接给子组件添加事件，他是没有反应。需要添加.native
+        Vue.component("child",{
+            template:"<div>child</div>",
+        })
+        var vm = new Vue({
+            el:'#root',
+            methods:{
+                handleClick: function(){
+                    alert("click")
+                }
+            }
+        })
+    </script>
+</body>
+</html>

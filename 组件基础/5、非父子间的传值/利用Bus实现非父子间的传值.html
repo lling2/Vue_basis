@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='../../js/vue.js'></script>
+</head>
+<body>
+    <div id="app">
+        <child content='dell'></child>
+        <child content='yell'></child>
+    </div>
+    <script>
+        Vue.prototype.bus=new Vue();
+        Vue.component('child',{
+            template: "<div @click='handleClick'>{{newContent}}</div>",
+            props: {
+                content: String
+            },
+            data: function(){
+                return {
+                    newContent: this.content
+                }
+            },
+            methods:{
+                handleClick: function(){
+                    this.bus.$emit("change",this.newContent);
+                }
+            },
+            mounted: function(){
+                var that = this;
+                this.bus.$on("change",function(msg){
+                    that.newContent = msg;
+                })
+            }
+        })
+        var vm = new Vue({
+            el:"#app"
+        })
+    </script>
+</body>
+</html>

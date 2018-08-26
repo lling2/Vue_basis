@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='../../js/vue.js'></script>
+</head>
+<body>
+    <div id="root">
+        <counter :count='0'></counter>
+        <counter :count='0'></counter>
+    </div>
+    <script>
+        // 父组件向子组件传值
+        // 定义局部组件 var counter = {}
+        var counter = {
+            props:['count'],
+            template:"<div @click='handleClick'>{{number}}</div>",
+            //子组件的data必须为函数
+            data:function(){
+                return{
+                    // 因为不能直接修改count值，所以将其赋给number
+                    number: this.count
+                }
+            },
+            methods:{
+                handleClick: function(){
+                    this.number++;
+                }
+            }
+        };
+        var vm = new Vue({
+            el:'#root',
+            components:{
+                counter:counter
+            }
+        })
+    </script>
+</body>
+</html>

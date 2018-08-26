@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='../../js/vue.js'></script>
+</head>
+<body>
+    <div id="root">
+        <row></row>
+    </div>
+    <script>
+        Vue.component("row",{
+            template:'<div>{{name}}</div>',
+            //子组件的data必须为函数
+            data:function(){
+                return{
+                    name: 'aa'
+                }
+            }
+        })
+        var vm = new Vue({
+            el:'#root'
+        })
+    </script>
+</body>
+</html>

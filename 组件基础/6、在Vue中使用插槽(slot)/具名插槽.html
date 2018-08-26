@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='../../js/vue.js'></script>
+</head>
+<body>
+    <!-- 使用具名插槽 -->
+    <div id="app">
+        <child>
+            <div slot='header'>header</div>
+            <div slot='footer'>footer</div>
+        </child>
+    </div>
+    <script>
+        Vue.component("child",{
+            // 利用插槽slot接收
+            // slot还接收默认值
+            template:`<div>
+                        <slot name='header'></slot>
+                        <slot>content</slot>
+                        <slot name='footer'></slot>
+                      </div>`
+        })
+        var vm = new Vue({
+            el:'#app'
+        })
+    </script>
+</body>
+</html>
