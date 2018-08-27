@@ -9,7 +9,8 @@
 </head>
 <body>
     <div id="root">
-        <counter content='hello'></counter>
+        <counter :content="[{a:'a'}]"></counter>
+        <counter content="hello"></counter>
     </div>
     <script>
         Vue.component("counter",{
@@ -23,6 +24,7 @@
                     }
                 }
             },
+            // props:["content"],
             template:'<div>{{content}}</div>',
         })
         var vm = new Vue({

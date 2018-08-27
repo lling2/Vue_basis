@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='../../js/vue.js'></script>
+</head>
+<body>
+    <!-- 动态组件:切换不同的组件 利用is属性根据type的不同,显示不同的组件 -->
+    <div id="app">
+        <child1 v-if="this.type==='child1'"></child1>
+        <child2 v-if="this.type==='child2'"></child2>
+        <button @click='handleClick'>change</button>
+    </div>
+    <script>
+        Vue.component("child1",{
+            template:'<div>child1</div>'
+        })
+        Vue.component("child2",{
+            template:'<div>child2</div>'
+        })
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                type:"child1"
+            },
+            methods:{
+                handleClick: function(){
+                    this.type=(this.type==='child1')?"child2":"child1"
+                }
+            }
+        })
+    </script>
+</body>
+</html>
